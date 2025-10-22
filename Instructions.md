@@ -8,7 +8,7 @@ Built with React, TypeScript, Vite, and Tailwind CSS, the application features a
 
 ## API Specification
 
-For backend implementation requirements, see [API Specification](./API_SPEC.md).
+For backend implementation requirements, see [API Specification](./API_SPECIFICATION.md).
 
 ## Expanding the ESLint configuration
 
