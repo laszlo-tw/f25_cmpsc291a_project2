@@ -361,19 +361,26 @@ export class ApiPollingUpdateService implements UpdateService {
 
   private async fetchExpertQueueUpdates(): Promise<ExpertQueue[]> {
     const token = this.tokenManager.getToken();
-    if (!this.state.userId || !token || this.state.userRole !== 'expert') {
+    // if (!this.state.userId || !token || this.state.userRole !== 'expert') {
+    //   console.warn(
+    //     'ApiPollingUpdateService: Expert queue polling requires expert role'
+    //   );
+    //   return [];
+    // }
+    if (!this.state.userId || !token ) { // Changed from above
       console.warn(
-        'ApiPollingUpdateService: Expert queue polling requires expert role'
+        'ApiPollingUpdateService: Missing user context or auth token'
       );
       return [];
     }
 
     try {
-      const sinceParam = this.state.lastExpertQueueUpdate
-        ? `?since=${this.state.lastExpertQueueUpdate}&expertId=${this.state.userId}`
-        : `?expertId=${this.state.userId}`;
+      // const sinceParam = this.state.lastExpertQueueUpdate
+      //   ? `?since=${this.state.lastExpertQueueUpdate}&expertId=${this.state.userId}`
+      //   : `?expertId=${this.state.userId}`;
 
-      const url = `${this.config.baseUrl}/api/expert-queue/updates${sinceParam}`;
+      // const url = `${this.config.baseUrl}/api/expert-queue/updates${sinceParam}`;
+      const url = `${this.config.baseUrl}/api/expert-queue/updates?expertId=${this.state.userId}`; // Changed from above
 
       const response = await fetch(url, {
         method: 'GET',
