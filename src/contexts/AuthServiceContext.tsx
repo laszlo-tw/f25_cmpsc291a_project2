@@ -45,22 +45,22 @@ export function AuthServiceProvider({ children }: AuthServiceProviderProps) {
   }, [serviceConfig.authService]);
 
   // ADDED - Restore token from session cookie
-  useEffect(() => {
-    async function restoreSession() {
-      if (!authService || !isAuthServiceReady) return;
+  // useEffect(() => {
+  //   async function restoreSession() {
+  //     if (!authService || !isAuthServiceReady) return;
 
-      try {
-        // Try to refresh token from session cookie
-        const user = await authService.refreshToken();
-        console.log('Session restored for user:', user.username);
-      } catch (error) {
-        // No active session or refresh failed - this is OK
-        console.log('No active session to restore');
-      }
-    }
+  //     try {
+  //       // Try to refresh token from session cookie
+  //       const user = await authService.refreshToken();
+  //       console.log('Session restored for user:', user.username);
+  //     } catch (error) {
+  //       // No active session or refresh failed - this is OK
+  //       console.log('No active session to restore');
+  //     }
+  //   }
 
-    restoreSession();
-  }, [authService, isAuthServiceReady]);
+  //   restoreSession();
+  // }, [authService, isAuthServiceReady]);
 
   const value: AuthServiceContextType = {
     authService: authService!,
